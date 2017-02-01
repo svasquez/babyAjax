@@ -9,23 +9,26 @@
         }
     };
 
-    babyAjax.prototype.AjaxCall = function (settings) {
+    babyAjax.AjaxCall = function (settings) {
+        var xhr = initializeXhr();
+        settings.method = (settings.method || method).toUpperCase();
+        xhr.open(settings.url,settings.method,true);
         
     };
 
-    babyAjax.prototype.post = function (configurl,ctnType,data,callback) {
+    babyAjax.post = function (configurl,ctnType,data,callback) {
         
     };
 
-    babyAjax.prototype.get = function (configurl,ctnType,data,callback) {
+    babyAjax.get = function (configurl,ctnType,data,callback) {
         
     };
 
-    babyAjax.prototype.put = function (configurl,ctnType,data,callback) {
+    babyAjax.put = function (configurl,ctnType,data,callback) {
         
     };
 
-    babyAjax.prototype.delete = function (configurl,ctnType,data,callback) {
+    babyAjax.del = function (configurl,ctnType,data,callback) {
         
     };
 
