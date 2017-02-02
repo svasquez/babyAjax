@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>BabyAjax Test Page</title>
         <script src="../src/index.js" ></script>
         <script>
             babyAjax.ajaxCall({
-                url : '/sampledata.txt',
+                url : 'sampledata.txt',
                 onOk : function (data) {
                     alert(data);
                 },

@@ -1,3 +1,7 @@
+/** 
+ * Function to create babyAjax object
+*/
+
 (function () {
     var babyAjax = {};
     var defaultMethod = 'GET';
@@ -10,6 +14,10 @@
         }
     };
 
+    /**
+     * Generic function to do asynchronus callback
+     * @param {object} settings - storage all data to do asynchronus call
+     */
     babyAjax.ajaxCall = function (settings) {
         var xhr = initializeXhr();
         settings.method = (settings.method || defaultMethod).toUpperCase();
@@ -27,20 +35,124 @@
         };
     };
 
-    babyAjax.post = function (configurl, ctnType, data, callback) {
+    /**
+     * Function to POST data via asynchronus call
+     * @param {string} url 
+     * @param {object} headers
+     * @param {object} data
+     * @param {Function} callback
+     */
+    babyAjax.post = function (url, headers, data, callback) {
+        var xhr = initializeXhr();
+        xhr.open('POST',url,true);
+        if(headers){
+            for(var name in headers){
+                xhr.setRequestHeader(name,headers[name]);
+            }
+        }
 
+        xhr.send(data || null);
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
+                var xhrObject = {
+                    data : xhr.responseText,
+                    headers : xhr.getAllResponseHeaders()
+                };
+                callback(xhrObject);
+            } else {
+                callback(null,new Error('Error occurred ' +  xhr.status));
+            }
+        };
     };
 
+    /**
+     * Function to GET data via asynchronus call
+     * @param {string} url 
+     * @param {object} headers
+     * @param {object} data
+     * @param {Function} callback
+     */
     babyAjax.get = function (configurl, ctnType, data, callback) {
+        var xhr = initializeXhr();
+        xhr.open('GET',url,true);
+        if(headers){
+            for(var name in headers){
+                xhr.setRequestHeader(name,headers[name]);
+            }
+        }
 
+        xhr.send(data || null);
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
+                var xhrObject = {
+                    data : xhr.responseText,
+                    headers : xhr.getAllResponseHeaders()
+                };
+                callback(xhrObject);
+            } else {
+                callback(null,new Error('Error occurred ' +  xhr.status));
+            }
+        };
     };
 
+    /**
+     * Function to PUT data via asynchronus call
+     * @param {string} url 
+     * @param {object} headers
+     * @param {object} data
+     * @param {Function} callback
+     */
     babyAjax.put = function (configurl, ctnType, data, callback) {
+        var xhr = initializeXhr();
+        xhr.open('PUT',url,true);
+        if(headers){
+            for(var name in headers){
+                xhr.setRequestHeader(name,headers[name]);
+            }
+        }
 
+        xhr.send(data || null);
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
+                var xhrObject = {
+                    data : xhr.responseText,
+                    headers : xhr.getAllResponseHeaders()
+                };
+                callback(xhrObject);
+            } else {
+                callback(null,new Error('Error occurred ' +  xhr.status));
+            }
+        };
     };
 
+    /**
+     * Function to DELETE data via asynchronus call
+     * @param {string} url 
+     * @param {object} headers
+     * @param {object} data
+     * @param {Function} callback
+     */
     babyAjax.del = function (configurl, ctnType, data, callback) {
+        var xhr = initializeXhr();
+        xhr.open('DELETE',url,true);
+        if(headers){
+            for(var name in headers){
+                xhr.setRequestHeader(name,headers[name]);
+            }
+        }
 
+        xhr.send(data || null);
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
+                var xhrObject = {
+                    data : xhr.responseText,
+                    headers : xhr.getAllResponseHeaders()
+                };
+                callback(xhrObject);
+            } else {
+                callback(null,new Error('Error occurred ' +  xhr.status));
+            }
+        };
     };
 
     window.babyAjax = babyAjax;
