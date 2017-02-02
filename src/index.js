@@ -72,7 +72,7 @@
      * @param {object} data
      * @param {Function} callback
      */
-    babyAjax.get = function (configurl, ctnType, data, callback) {
+    babyAjax.get = function (url, ctnType, data, callback) {
         var xhr = initializeXhr();
         xhr.open('GET',url,true);
         if(headers){
@@ -102,7 +102,7 @@
      * @param {object} data
      * @param {Function} callback
      */
-    babyAjax.put = function (configurl, ctnType, data, callback) {
+    babyAjax.put = function (url, ctnType, data, callback) {
         var xhr = initializeXhr();
         xhr.open('PUT',url,true);
         if(headers){
@@ -132,7 +132,7 @@
      * @param {object} data
      * @param {Function} callback
      */
-    babyAjax.del = function (configurl, ctnType, data, callback) {
+    babyAjax.del = function (url, ctnType, data, callback) {
         var xhr = initializeXhr();
         xhr.open('DELETE',url,true);
         if(headers){
