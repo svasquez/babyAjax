@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>BabyAjax Test Page</title>
-        <script src="../src/index.js" ></script>
-        <script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>BabyAjax Test Page</title>
+    <script src="../src/index.js"></script>
+    <script>
             babyAjax.ajaxCall({
-                url : 'sampledata.txt',
-                onOk : function (data) {
-                    alert(data);
+                url: 'sampledata.txt',
+                onOk: function (data) {
+                    console.log(data);
                 },
-                onError : function(err){
+                onError: function (err) {
                     alert(err);
                 }
             });
-        </script>
-    </head>
-    <body>
 
-    </body>
+            babyAjax.get('sampledata.txt', { 'X-Example': 'text/example' }, function (data) {
+                console.log(data.data);
+            });
+        </script>
+</head>
+
+<body>
+
+</body>
+
 </html>

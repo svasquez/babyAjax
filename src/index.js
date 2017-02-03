@@ -27,10 +27,12 @@
         }
         xhr.send(settings.data || null);
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
-                if (settings.onOk) settings.onOk(xhr.responseText);
-            } else {
-                if (settings.onError) settings.onError(new Error('Error occurred ' +  xhr.status));
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status <= 208) {
+                    if (settings.onOk) settings.onOk(xhr.responseText);
+                } else {
+                    if (settings.onError) settings.onError(new Error('Error occurred ' + xhr.status));
+                }
             }
         };
     };
@@ -44,23 +46,21 @@
      */
     babyAjax.post = function (url, headers, data, callback) {
         var xhr = initializeXhr();
-        xhr.open('POST',url,true);
-        if(headers){
-            for(var name in headers){
-                xhr.setRequestHeader(name,headers[name]);
+        xhr.open('POST', url, true);
+        if (headers) {
+            for (var name in headers) {
+                xhr.setRequestHeader(name, headers[name]);
             }
         }
 
         xhr.send(data || null);
-        xhr.onreadystatechange = function(){
-            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
-                var xhrObject = {
-                    data : xhr.responseText,
-                    headers : xhr.getAllResponseHeaders()
-                };
-                callback(xhrObject);
-            } else {
-                callback(null,new Error('Error occurred ' +  xhr.status));
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status <= 208) {
+                    callback({ data: xhr.responseText, headers: xhr.getAllResponseHeaders() }, null);
+                } else {
+                    callback(null, new Error('Error occurred ' + xhr.status));
+                }
             }
         };
     };
@@ -69,28 +69,25 @@
      * Function to GET data via asynchronus call
      * @param {string} url 
      * @param {object} headers
-     * @param {object} data
      * @param {Function} callback
      */
-    babyAjax.get = function (url, ctnType, data, callback) {
+    babyAjax.get = function (url, headers, callback) {
         var xhr = initializeXhr();
-        xhr.open('GET',url,true);
-        if(headers){
-            for(var name in headers){
-                xhr.setRequestHeader(name,headers[name]);
+        xhr.open('GET', url, true);
+        if (headers) {
+            for (var name in headers) {
+                xhr.setRequestHeader(name, headers[name]);
             }
         }
 
-        xhr.send(data || null);
-        xhr.onreadystatechange = function(){
-            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
-                var xhrObject = {
-                    data : xhr.responseText,
-                    headers : xhr.getAllResponseHeaders()
-                };
-                callback(xhrObject);
-            } else {
-                callback(null,new Error('Error occurred ' +  xhr.status));
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status <= 208) {
+                    callback({ data: xhr.responseText, headers: xhr.getAllResponseHeaders() }, null);
+                } else {
+                    callback(null, new Error('Error occurred ' + xhr.status));
+                }
             }
         };
     };
@@ -102,25 +99,23 @@
      * @param {object} data
      * @param {Function} callback
      */
-    babyAjax.put = function (url, ctnType, data, callback) {
+    babyAjax.put = function (url, headers, data, callback) {
         var xhr = initializeXhr();
-        xhr.open('PUT',url,true);
-        if(headers){
-            for(var name in headers){
-                xhr.setRequestHeader(name,headers[name]);
+        xhr.open('PUT', url, true);
+        if (headers) {
+            for (var name in headers) {
+                xhr.setRequestHeader(name, headers[name]);
             }
         }
 
         xhr.send(data || null);
-        xhr.onreadystatechange = function(){
-            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
-                var xhrObject = {
-                    data : xhr.responseText,
-                    headers : xhr.getAllResponseHeaders()
-                };
-                callback(xhrObject);
-            } else {
-                callback(null,new Error('Error occurred ' +  xhr.status));
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status <= 208) {
+                    callback({ data: xhr.responseText, headers: xhr.getAllResponseHeaders() }, null);
+                } else {
+                    callback(null, new Error('Error occurred ' + xhr.status));
+                }
             }
         };
     };
@@ -132,25 +127,23 @@
      * @param {object} data
      * @param {Function} callback
      */
-    babyAjax.del = function (url, ctnType, data, callback) {
+    babyAjax.del = function (url, headers, data, callback) {
         var xhr = initializeXhr();
-        xhr.open('DELETE',url,true);
-        if(headers){
-            for(var name in headers){
-                xhr.setRequestHeader(name,headers[name]);
+        xhr.open('DELETE', url, true);
+        if (headers) {
+            for (var name in headers) {
+                xhr.setRequestHeader(name, headers[name]);
             }
         }
 
         xhr.send(data || null);
-        xhr.onreadystatechange = function(){
-            if (xhr.readyState === XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <= 208)) {
-                var xhrObject = {
-                    data : xhr.responseText,
-                    headers : xhr.getAllResponseHeaders()
-                };
-                callback(xhrObject);
-            } else {
-                callback(null,new Error('Error occurred ' +  xhr.status));
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status >= 200 && xhr.status <= 208) {
+                    callback({ data: xhr.responseText, headers: xhr.getAllResponseHeaders() }, null);
+                } else {
+                    callback(null, new Error('Error occurred ' + xhr.status));
+                }
             }
         };
     };
